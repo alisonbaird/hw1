@@ -159,3 +159,45 @@
 -- Represented by agent
 -- ====================
 -- Christian Bale
+
+
+
+CREATE TABLE Movies (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  title TEXT,
+  year_released INTEGER,
+  mpaa_rating TEXT,
+  studio_id 
+);
+
+CREATE TABLE Actors (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  actor_first_name TEXT,
+  actor_last_name TEXT,
+  character_first_name TEXT,
+  character_last_name TEXT,
+  movie_id,
+  agent_id
+);
+
+CREATE TABLE Studios (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  studio_name
+);
+
+CREATE TABLE Agents (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  agent_first_name TEXT,
+  agent_last_name TEXT
+);
+
+INSERT INTO Movies (
+  title TEXT,
+  year_released INTEGER,
+  mpaa_rating TEXT
+)
+VALUES (
+  "Batman Begins",
+  "2005",
+  "PG-13"
+);
