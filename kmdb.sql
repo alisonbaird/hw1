@@ -142,10 +142,25 @@ INSERT INTO movies (
 )
 VALUES 
   ("Batman Begins", 2005, "PG-13"),
-  ("The Dark Knight", 2008, "PG-13");
+  ("The Dark Knight", 2008, "PG-13"),
+  ("The Dark Knight Rises", 2012, "PG-13");
   
-  
+  INSERT INTO actors (
+  actor_first_name,
+  actor_last_name,
+  character_first_name,
+  character_last_name,
+  movie_id,
+  agent_id
+)
 
+VALUES 
+  ("Christian", "Bale", "Batman", "No Last Name"),
+  ("Katie", "Holmes", "Rachel", "Dawes"),
+  ("Cillian", "Murphy", "Scarecrow", "No Last Name"),
+  ("Michael", "Caine", "Alfred", "Pennyworth"),
+  ("Christian", "Bale", "Alfred", "Pennyworth"),
+  
 
 -- Prints a header for the movies output
 .print "Movies"
@@ -225,4 +240,4 @@ VALUES
 --   "jane@example.com"
 -- );
 
-SELECT * FROM movies;
+
