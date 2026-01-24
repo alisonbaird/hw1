@@ -99,6 +99,7 @@ DROP TABLE IF EXISTS movies;
 DROP TABLE IF EXISTS actors;
 DROP TABLE IF EXISTS studios;
 DROP TABLE IF EXISTS characters;
+DROP TABLE IF EXISTS agents;
 
 
 -- Create new tables, according to your domain model
@@ -114,7 +115,13 @@ CREATE TABLE movies (
 CREATE TABLE actors (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   actor_first_name TEXT,
-  actor_last_name TEXT
+  actor_last_name TEXT,
+  agent_id INTEGER
+);
+
+CREATE TABLE agents (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT
 );
 
 CREATE TABLE characters (
@@ -148,26 +155,34 @@ VALUES
   ("The Dark Knight Rises", 2012, "PG-13", 1
 );
 
+INSERT INTO agents (
+  name
+)
+VALUES 
+  ("William Morris Endeavor"
+);
+
   INSERT INTO actors (
   actor_first_name,
-  actor_last_name
+  actor_last_name,
+  agent_id
 )
 
 VALUES 
-  ("Christian", "Bale"),
-  ("Katie", "Holmes"),
-  ("Michael", "Caine"),
-  ("Liam", "Neeson"),
-  ("Christian", "Bale"),
-  ("Heath", "Ledger"),
-  ("Gary", "Oldman"),
-  ("Aaron", "Eckhart"),
-  ("Michael", "Caine"),
-  ("Christian", "Bale"),
-  ("Anne", "Hathaway"),
-  ("Joseph", "Gordon-Levitt"),
-  ("Michael", "Caine"),
-  ("Gary", "Oldman");
+  ("Christian", "Bale", 1),
+  ("Katie", "Holmes", NULL),
+  ("Michael", "Caine", NULL),
+  ("Liam", "Neeson", NULL),
+  ("Christian", "Bale", 1),
+  ("Heath", "Ledger", NULL),
+  ("Gary", "Oldman", NULL),
+  ("Aaron", "Eckhart", NULL),
+  ("Michael", "Caine", NULL),
+  ("Christian", "Bale", 1),
+  ("Anne", "Hathaway", NULL),
+  ("Joseph", "Gordon-Levitt", NULL),
+  ("Michael", "Caine", NULL),
+  ("Gary", "Oldman", NULL);
 
   INSERT INTO studios (
   studio_name
@@ -267,6 +282,11 @@ ON characters.actor_id = actors.id;
 
 -- ***TODO!***
 -- The SQL statement for the represented actor(s) output goes here.
+
+SELECT actors.actor_first_name, actors.actor_last_name, agents.name 
+FROM actors
+INNER JOIN agents
+ON actors.agent_id = agents.id;
 
 -- Example output:
 -- Represented by agent
