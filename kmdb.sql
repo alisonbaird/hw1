@@ -234,11 +234,11 @@ ON movies.studio_id = studio_id;
 -- The SQL statement for the cast output goes here.
 
 SELECT movies.title, actors.actor_first_name, actors.actor_last_name, characters.character_first_name, characters.character_last_name
-FROM characters
-INNER JOIN movies
-ON characters.movie_id = movies_id
+FROM movies
+INNER JOIN characters
+ON characters.movie_id = movies.id
 INNER JOIN actors
-ON characters.actor_id = actors_id;
+ON characters.actor_id = actors.id;
 
 -- Example output:
 -- Top Cast
