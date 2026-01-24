@@ -294,28 +294,9 @@ LIMIT 1;
 -- ====================
 -- Christian Bale
 
--- CREATE TABLE students (
---   id INTEGER PRIMARY KEY AUTOINCREMENT,
---   first_name TEXT,
---   last_name TEXT
--- );
 
-
-
-
-
--- INSERT INTO students (
---   first_name,
---   last_name,
---   email
--- )
--- VALUES (
---   "Jane",
---   "Doe",
---   "jane@example.com"
--- );
-
-
-
+UPDATE agents
+SET name = "William Morris Endeavor"
+WHERE id = 1;
 
 
