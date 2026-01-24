@@ -283,10 +283,11 @@ ON characters.actor_id = actors.id;
 -- ***TODO!***
 -- The SQL statement for the represented actor(s) output goes here.
 
-SELECT actors.actor_first_name, actors.actor_last_name, agents.name 
+SELECT agents.name, actors.actor_first_name, actors.actor_last_name
 FROM actors
 INNER JOIN agents
-ON actors.agent_id = agents.id;
+ON actors.agent_id = agents.id
+LIMIT 1;
 
 -- Example output:
 -- Represented by agent
