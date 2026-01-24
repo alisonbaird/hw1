@@ -95,10 +95,11 @@
 
 -- Drop existing tables, so you'll start fresh each time this script is run.
 -- TODO!
-DROP TABLE movies;
-DROP TABLE actors;
-DROP TABLE studios;
-DROP TABLE agents;
+DROP TABLE IF EXISTS movies;
+DROP TABLE IF EXISTS actors;
+DROP TABLE IF EXISTS studios;
+DROP TABLE IF EXISTS characters;
+
 
 -- Create new tables, according to your domain model
 -- TODO!
@@ -113,11 +114,15 @@ CREATE TABLE movies (
 CREATE TABLE actors (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   actor_first_name TEXT,
-  actor_last_name TEXT,
+  actor_last_name TEXT
+);
+
+CREATE TABLE characters (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
   character_first_name TEXT,
   character_last_name TEXT,
   movie_id INTEGER,
-  agent_id INTEGER
+  actor_id INTEGER
 );
 
 CREATE TABLE studios (
@@ -125,11 +130,6 @@ CREATE TABLE studios (
   studio_name TEXT
 );
 
-CREATE TABLE agents (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  agent_first_name TEXT,
-  agent_last_name TEXT
-);
 
 -- Insert data into your database that reflects the sample data shown above
 -- Use hard-coded foreign key IDs when necessary
@@ -138,29 +138,70 @@ CREATE TABLE agents (
 INSERT INTO movies (
   title,
   year_released,
-  mpaa_rating
-)
-VALUES 
-  ("Batman Begins", 2005, "PG-13"),
-  ("The Dark Knight", 2008, "PG-13"),
-  ("The Dark Knight Rises", 2012, "PG-13");
-  
-  INSERT INTO actors (
-  actor_first_name,
-  actor_last_name,
-  character_first_name,
-  character_last_name,
-  movie_id,
-  agent_id
+  mpaa_rating,
+  studio_id
 )
 
 VALUES 
-  ("Christian", "Bale", "Batman", "No Last Name"),
-  ("Katie", "Holmes", "Rachel", "Dawes"),
-  ("Cillian", "Murphy", "Scarecrow", "No Last Name"),
-  ("Michael", "Caine", "Alfred", "Pennyworth"),
-  ("Christian", "Bale", "Alfred", "Pennyworth"),
-  
+  ("Batman Begins", 2005, "PG-13", 1),
+  ("The Dark Knight", 2008, "PG-13", 1),
+  ("The Dark Knight Rises", 2012, "PG-13", 1
+);
+
+  INSERT INTO actors (
+  actor_first_name,
+  actor_last_name,
+  movie_id
+)
+
+VALUES 
+  ("Christian", "Bale", 1),
+  ("Katie", "Holmes", 1),
+  ("Michael", "Caine", 1),
+  ("Liam", "Neeson", 1),
+  ("Christian", "Bale", 2),
+  ("Heath", "Ledger", 2),
+  ("Gary", "Oldman", 2),
+  ("Aaron", "Eckhart", 2),
+  ("Michael", "Caine", 2),
+  ("Christian", "Bale", 3),
+  ("Anne", "Hathaway", 3),
+  ("Joseph", "Gordon-Levitt", 3),
+  ("Michael", "Caine", 3),
+  ("Gary", "Oldman", 3);
+
+  INSERT INTO studios (
+  studio_name
+)
+
+VALUES 
+  ("Warner Brothers"
+);
+
+INSERT INTO characters (
+  character_first_name,
+  character_last_name,
+  movie_id,
+  actor_id
+)
+
+VALUES 
+  ("Batman", "No Last Name", 1, 1),
+  ("Rachel", "Dawes", 1, 2),
+  ("Alfred", "No Last Name", 1, 3),
+  ("Ra's Al Ghul", "No Last Name", 1, 4),
+  ("Batman", "No Last Name", 2, 1),
+  ("Joker", "No Last Name", 2, 5),
+  ("Commissioner", "Gordon", 2, 7),
+  ("Harvey", "Dent", 2, 8),
+  ("Alfred", "No Last Name", 2, 3),
+  ("Batman", "No Last Name", 3, 1),
+  ("Selina", "Kyle", 3, 9),
+  ("John", "Blake", 3, 10),
+  ("Alfred", "No Last Name", 3, 3),
+  ("Commissioner", "Gordon", 3, 7);
+
+
 
 -- Prints a header for the movies output
 .print "Movies"
@@ -239,5 +280,12 @@ VALUES
 --   "Doe",
 --   "jane@example.com"
 -- );
+
+
+
+SELECT movies.title, movies.year_released, movies.mpaa_rating, studios.studio_name
+FROM movies
+INNER JOIN studios
+ON movies.studio_id = studio_id;
 
 
