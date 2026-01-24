@@ -150,25 +150,24 @@ VALUES
 
   INSERT INTO actors (
   actor_first_name,
-  actor_last_name,
-  movie_id
+  actor_last_name
 )
 
 VALUES 
-  ("Christian", "Bale", 1),
-  ("Katie", "Holmes", 1),
-  ("Michael", "Caine", 1),
-  ("Liam", "Neeson", 1),
-  ("Christian", "Bale", 2),
-  ("Heath", "Ledger", 2),
-  ("Gary", "Oldman", 2),
-  ("Aaron", "Eckhart", 2),
-  ("Michael", "Caine", 2),
-  ("Christian", "Bale", 3),
-  ("Anne", "Hathaway", 3),
-  ("Joseph", "Gordon-Levitt", 3),
-  ("Michael", "Caine", 3),
-  ("Gary", "Oldman", 3);
+  ("Christian", "Bale"),
+  ("Katie", "Holmes"),
+  ("Michael", "Caine"),
+  ("Liam", "Neeson"),
+  ("Christian", "Bale"),
+  ("Heath", "Ledger"),
+  ("Gary", "Oldman"),
+  ("Aaron", "Eckhart"),
+  ("Michael", "Caine"),
+  ("Christian", "Bale"),
+  ("Anne", "Hathaway"),
+  ("Joseph", "Gordon-Levitt"),
+  ("Michael", "Caine"),
+  ("Gary", "Oldman");
 
   INSERT INTO studios (
   studio_name
@@ -239,6 +238,7 @@ INNER JOIN characters
 ON characters.movie_id = movies.id
 INNER JOIN actors
 ON characters.actor_id = actors.id;
+
 
 -- Example output:
 -- Top Cast
